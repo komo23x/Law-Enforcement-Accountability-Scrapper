@@ -3,8 +3,16 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- master
+trigger: none
+pr: none
+
+schedules:
+- cron: "0 0 9 * *" # Run at 9AM daily
+  displayName: "Daily Crawl"
+  branches:
+    include: 
+    - master
+  always: true
 
 pool:
   vmImage: 'ubuntu-latest'
