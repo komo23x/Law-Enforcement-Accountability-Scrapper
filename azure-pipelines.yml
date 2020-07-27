@@ -18,27 +18,17 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      apt install python-pip3
-      pip3 install requests
-      pip3 install beautifulsoup4
-  displayName: 'Pip install dependencies'
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '3.x'
     addToPath: true
     architecture: 'x64'
   displayName: 'Set Python version to Python 3'
-- task: PythonScript@0
-  inputs:
-    scriptSource: 'filePath'
-    scriptPath: 'WS1_Web_Crawler_script.py'
+- script: |
+      sudo apt install python3-pip
+      pip3 install requests
+      pip3 install beautifulsoup4
+      python3 WS1_Web_Crawler_script.py
   displayName: 'Run crawler python script'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'ws1_web_crawler_results.csv'
-    publishLocation: 'Container'
+- publish: '$(Build.ArtifactStagingDirectory)/ws1_web_crawler_results.csv'
+  artifact: 'ws1_web_crawler_results.csv'
