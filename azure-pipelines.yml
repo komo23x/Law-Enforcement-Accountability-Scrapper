@@ -29,7 +29,7 @@ steps:
     architecture: 'x64'
   displayName: 'Set Python version to Python 3'
 - script: |
-      echo '##vso[task.setvariable variable=DATETIME]$(date +%F@%T)'
+      echo "##vso[task.setvariable variable=DATETIME]$(date +%F@%T)"
       sudo apt install python3-pip
       pip3 install requests
       pip3 install beautifulsoup4
