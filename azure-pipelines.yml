@@ -7,7 +7,7 @@ trigger: none
 pr: none
 
 schedules:
-- cron: "0 0 9 * *" # Run at 9AM daily
+- cron: "0 10 * * *" # Run at 9AM daily
   displayName: "Daily Crawl"
   branches:
     include: 
@@ -30,5 +30,5 @@ steps:
       pip3 install beautifulsoup4
       python3 WS1_Web_Crawler_script.py
   displayName: 'Run crawler python script'
-- publish: '$(Build.ArtifactStagingDirectory)/ws1_web_crawler_results.csv'
+- publish: '$(System.DefaultWorkingDirectory)/ws1_web_crawler_results.csv'
   artifact: 'ws1_web_crawler_results.csv'
