@@ -3,6 +3,10 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+variables:
+- name: DATETIME
+  value: 01-01-1970@00:00:00
+
 trigger: none
 pr: none
 
@@ -25,7 +29,7 @@ steps:
     architecture: 'x64'
   displayName: 'Set Python version to Python 3'
 - script: |
-      export DATETIME=$(date +%F@%T)
+      echo '##vso[task.setvariable variable=DATETIME]$(date +%F@%T)'
       sudo apt install python3-pip
       pip3 install requests
       pip3 install beautifulsoup4
