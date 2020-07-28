@@ -25,7 +25,7 @@ steps:
     architecture: 'x64'
   displayName: 'Set Python version to Python 3'
 - script: |
-      export DATE=$(date +%F)
+      export DATETIME=$(date +%F@%T)
       sudo apt install python3-pip
       pip3 install requests
       pip3 install beautifulsoup4
@@ -39,8 +39,8 @@ steps:
     repositoryName: '$(Build.Repository.Name)'
     action: 'create'
     target: '$(Build.SourceVersion)'
-    tagSource: 'gitTag'
-    tagPattern: '$(DATE)'
-    title: 'Daily Crawl ($DATE))'
+    tagSource: 'userSpecifiedTag'
+    tag: '$(DATETIME)'
+    title: 'Daily Crawl ($(DATETIME))'
     assets: '$(System.DefaultWorkingDirectory)/ws1_web_crawler_results.csv'
     addChangeLog: false
