@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import csv
-from datetime import datetime
 
 # Bing news limit's search results based on a code passed to
 # qft=interval%3d"<Interval code>"
@@ -106,11 +105,8 @@ for search_word in compiled_urls:
         row = [search_word, url, headline, article]
         rows.append(row)
 
-# Get a timestamp for the csv
-timestamp = datetime.now()
-
 fields = ["Search Term", "Source", "Title", "Article Content"]
-filename = timestamp.strftime("ws1_web_crawler_results_%Y-%m-%d_%H:%M:%S.csv")
+filename = "ws1_web_crawler_results.csv"
 
 # Write out to csv
 with open(filename, 'w') as csvfile:
