@@ -43,7 +43,7 @@ steps:
     OverWrite: true
   displayName: 'Copy CSV to staging directory'
 - publish: '$(Build.ArtifactStagingDirectory)/ws1_web_crawler_results.csv'
-  artifact: 'ws1_web_crawler_results.csv'
+  artifact: 'results'
   displayName: 'Copy build artifact'
 - task: GitHubRelease@1
   inputs:
